@@ -711,17 +711,24 @@ class blackjack():
 
 		for i in range(10000):
 
-			if(i%1000==0):
-				print("Episode: ",i)
+# 			if(i%1000==0):
+# 				print("Episode: ",i)
 			self.simulateOneEpisodeOnPolicy()
 # 
-		self.plotFigure_5_1()
+		self.plotFigure_5_1(title = "After 10,000 Episodes")
+
+		for i in range(500000):
+
+# 			if(i%1000==0):
+# 				print("Episode: ",i)
+			self.simulateOneEpisodeOnPolicy()
+# 
+		self.plotFigure_5_1(title = "After 500,000 Episodes")
 		
 
+	
 
-
-
-	def plotFigure_5_1(self):
+	def plotFigure_5_1(self,title):
 		# usableAce = {}
 		# nonUsableAce = {}
 		x1,y1,z1,x2,y2,z2=[],[],[],[],[],[]
@@ -739,15 +746,27 @@ class blackjack():
 				x2.append(keys[1])
 				y2.append(keys[0])
 				z2.append(values)
-				
-		fig = plt.figure()
-		ax = fig.add_subplot(111, projection='3d')
-		ax.scatter(x1,y1,z1)
+		
 
-		fig = plt.figure()
-		ax = fig.add_subplot(111, projection='3d')
+		fig1 = plt.figure()
+		ax = fig1.add_subplot(111, projection='3d')
+		ax.scatter(x1,y1,z1)
+		ax.title.set_text(title)
+		ax.set_xlabel('Player sum')
+		ax.set_ylabel('Dealer Card')
+		ax.set_zlabel('Useable Ace')
+
+
+		
+		fig2 = plt.figure()
+		ax = fig2.add_subplot(111, projection='3d')
 		ax.scatter(x2,y2,z2)
-#     plt.xlabel
+		ax.title.set_text(title)
+		ax.set_xlabel('Player sum')
+		ax.set_ylabel('Dealer Card')
+		ax.set_zlabel('Non Useable Ace')
+		
+		
 		plt.show()
 
 
